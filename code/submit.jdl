@@ -1,0 +1,43 @@
+# TO RUN THE CODE   EXECUTE submit in aliensh 
+# submit /alice/cern.ch/user/p/pwg_pp/rawmerge/vAN-20170406/mergeOfflineTriggerList.jdl $run $period $year $nJobs
+# e.g
+# submit /alice/cern.ch/user/p/pwg_pp/rawmerge/vAN-20170406/mergeOfflineTriggerList.jdl 267161  LHC16t 2016 30
+# source code can be found in git (in case you are using alien version, path should indicate git tag) 
+#     $ALICE_PHYSICS/PWGPP/rawmerge/mergeOfflineTriggerList.C
+
+Executable="PATH/highdEdxFilter.sh";
+
+Packages = {"VO_ALICE@AliPhysics::vAN-20190101-1"};
+
+Jobtag={"Raw data filtering for high-dEdX."};
+
+TTL="80000";
+Price="100";
+
+Validationcommand="PATH/val.sh";
+
+Split="se";
+SplitMaxInputFileNumber="$4";
+InputDataListFormat="xml-single";
+InputDataList="wn.xml";
+
+MasterResubmitThreshold=0;
+
+SplitArguments={"$1"};
+
+JDLVariables={"Packages","OutputDir"};
+
+Workdirectorysize={"12000MB"};
+
+InputFile={"LF:/alice/cern.ch/user/PATH/LHC18qtest/recHLT.C",
+           "LF:/alice/cern.ch/user/PATH/LHC18qtest/tpcHLTClusterLoop.C",
+           "LF:/alice/cern.ch/user/PATH/LHC18qtest/highdEdxFilter.C",
+           "LF:/alice/cern.ch/user/PATH/LHC18qtest/tpcPadRowClustering.C",
+           "LF:/alice/data/2018/LHC18q/000$1/cpass1_pass1/OCDB.root"
+};
+
+InputDataCollection="LF:/alice/data/$3/$2/000$1/fullrun.xml,nodownload";
+
+OutputDir="/alice/cern.ch/PATH/triggeredRaw18q/alice/data/$3/$2/000$1/#alien_counter_04i#";
+
+Output={    "log_archive.zip:*.log@disk=2","cluster*.root@disk=3","selected*.root@disk=3", "eventDumpHLT*.root@disk=3", "tpcPad*.C","*.xml","*.list","std*"};
