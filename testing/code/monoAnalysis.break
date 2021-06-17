@@ -1,0 +1,12 @@
+display seed.fNClustersInner
+display seed.fNClustersOuter
+display seed.fParamInner.fP
+display seed.fParamOuter.fP
+display paramInner0.fP
+display paramOuter0.fP
+display seed.fParamInner.fX
+display seed.fParamOuter.fX
+display paramInner0.fX
+display paramOuter0.fX
+display rowStart
+

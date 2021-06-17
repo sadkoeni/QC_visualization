@@ -1,0 +1,12 @@
+# This are watchpoints for debugger
+# display fit
+display delta.fN
+display xOrig.fData[0]@seed.fRieman.fN
+display yOrig.fData[0]@seed.fRieman.fN
+display zOrig.fData[0]@seed.fRieman.fN
+display *(delta->fY)@seed.fRieman.fN
+display *(delta->fZ)@seed.fRieman.fN
+
+
+#
+
